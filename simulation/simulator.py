@@ -40,7 +40,10 @@ class Simulator:
             status_placeholder.info("🚚 Iniciando carga de maiz enel contenedor...")
             time.sleep(1) # Simular tiempo de preparación
             self.start_loading()
-            self.truck.check_overweight() # Verificar sobrepeso inicial
+
+            # Verificar sobrepeso inicial después de la carga
+            if self.truck.check_overweight():
+                status_placeholder.warning("⚠️ Sobrepeso detectado. Ajuste la carga antes de iniciar la ruta.")
 
             # Actualizar UI después de la carga
             self._update_ui(status_placeholder, map_placeholder, charts_placeholder, alerts_placeholder)
@@ -209,7 +212,8 @@ class Simulator:
 
     def start_loading(self):
         """Inicia el proceso de carga."""
-        self._simulate_loading_or_unloading("Cargando", self.truck.max_weight_capacity)
+        self._simulate_loading_or_unloading("Cargando Maiz", self.truck.max_weight_capacity)
+        self.truck.current_weight = self.truck.max_weight_capacity  # Asegura que el peso inicial sea el máximo permitido
 
     def start_unloading(self):
         """Inicia el proceso de descarga."""
