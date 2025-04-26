@@ -37,7 +37,7 @@ class Simulator:
 
         try:
             # 1. Carga
-            status_placeholder.info("🚚 Iniciando carga del contenedor...")
+            status_placeholder.info("🚚 Iniciando carga de maiz enel contenedor...")
             time.sleep(1) # Simular tiempo de preparación
             self.start_loading()
             self.truck.check_overweight() # Verificar sobrepeso inicial
@@ -202,9 +202,9 @@ class Simulator:
         for i in range(101):
             time.sleep(0.05)  # Ajusta el tiempo para visualizar mejor
             progress.progress(i, text=f"{action}... {i}% completado")
-        if action == "Cargando":
+        if action == "Cargando Maiz":
             self.truck.current_weight = max_weight
-        elif action == "Descargando":
+        elif action == "Descargando Maiz en el Silo":
             self.truck.current_weight = 0
 
     def start_loading(self):
